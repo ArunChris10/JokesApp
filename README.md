@@ -1,2 +1,0 @@
-# JokesApp
-Display random jokes

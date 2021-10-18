@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <title>Jokes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <style>
+        body{
+    background-image: url("https://images.pexels.com/photos/8388979/pexels-photo-8388979.jpeg?auto=compress&cs=tinysrgb&fit=crop&fp-y=0.1&h=500&sharp=15&w=1500");      
+        }
+        div{
+            align-items: center;
+            color:white
+        }
+        button{
+            margin: 0;
+        position: absolute;
+        
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="question" class="display-5 fw-bold px-4 py-5 my-5 text-center" ></div>
+    <div id="answer" class="display-5 fw-bold px-4 py-5 my-5 text-center" ></div>
+    <button type="button" class="btn btn-primary btn-lg btn-block" onclick=refresh()>New Joke!</button>
+</body>
+
+<script>
+    $(()=>{
+        jokes()
+        
+    })
+    let refresh=()=>{
+        window.location.reload()
+    }
+    let jokes=async ()=>{
+    let jokesFetched=await axios.get("https://v2.jokeapi.dev/joke/Any")
+    if(jokesFetched.data.setup){
+    let question=jokesFetched.data.setup
+    let answer=jokesFetched.data.delivery
+    console.log(question)
+    $("#question").html(question)
+    $("#answer").html(answer)
+}
+else{
+    question="Joke of the Decade"
+    answer=jokesFetched.data.joke
+    console.log(question)
+    $("#question").html(question)
+    $("#answer").html(answer)
+}
+
+}
+
+    
+  
+
+</script>
+</html>

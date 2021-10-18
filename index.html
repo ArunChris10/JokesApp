@@ -48,7 +48,7 @@
     }
     let jokes=async ()=>{
     let jokesFetched=await axios.get("https://v2.jokeapi.dev/joke/Any")
-    if(jokesFetched.data.setup){
+    if(jokesFetched.data.setup && jokesFetched.data.category!=="Dark"){
     let question=jokesFetched.data.setup
     let answer=jokesFetched.data.delivery
     console.log(question)
@@ -56,11 +56,14 @@
     $("#answer").html(answer)
 }
 else{
+    if(jokesFetched.data.category!=="Dark"){
     question="Joke of the Decade"
     answer=jokesFetched.data.joke
     console.log(question)
     $("#question").html(question)
-    $("#answer").html(answer)
+    $("#answer").html(answer)}
+    else{
+    refresh()}
 }
 
 }

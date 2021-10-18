@@ -48,6 +48,7 @@
     }
     let jokes=async ()=>{
     let jokesFetched=await axios.get("https://v2.jokeapi.dev/joke/Any")
+    console.log(jokesFetched.data.category)
     if(jokesFetched.data.setup && jokesFetched.data.category!=="Dark"){
     let question=jokesFetched.data.setup
     let answer=jokesFetched.data.delivery

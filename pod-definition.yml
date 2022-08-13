@@ -2,11 +2,10 @@ apiVersion: v1
 kind: Pod
 metadata:
   name: arun-demopod
-  labels: 
-      app: demo
-      type: front-end
-
+  labels:
+    app: demo
+    type: front-end
 spec:
   containers:
-      name: nginx-container
-      image: nginx
+    name: nginx-container
+    image: nginx
